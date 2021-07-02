@@ -17,5 +17,7 @@ namespace PublicApiExercise.Data
         public DbSet<PublicApiExercise.Models.Genre> Genre { get; set; }
         public DbSet<PublicApiExercise.Models.Movie> Movie { get; set; }
         public DbSet<PublicApiExercise.Models.Film> Film { get; set; }
+        public DbSet<PublicApiExercise.Models.Janra> Janra { get; set; }
+        public DbSet<PublicApiExercise.Models.Muvi> Muvi { get; set; }
     }
 }
