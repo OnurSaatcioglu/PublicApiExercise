@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using PublicApiExercise.Data;
 using PublicApiExercise.Models;
 using Newtonsoft;
+using System.Net.Http;
+using System.Net;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace PublicApiExercise.Controllers
 {
@@ -23,7 +27,6 @@ namespace PublicApiExercise.Controllers
         // GET: Denemes
         public async Task<IActionResult> Index()
         {
-
             return View(await _context.Deneme.ToListAsync());
         }
 
@@ -37,6 +40,24 @@ namespace PublicApiExercise.Controllers
 
             var deneme = await _context.Deneme
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            string Url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=1e467d81ad561e2cbf2f23427a0095b6";
+
+            string jsonString = new WebClient().DownloadString(Url);
+
+            //string jsonString = @"{""genres"":[{""id"":28,""name"":""Action""},{""id"":12,""name"":""Adventure""},{""id"":16,""name"":""Animation""},{""id"":35,""name"":""Comedy""},{""id"":80,""name"":""Crime""},{""id"":99,""name"":""Documentary""},{""id"":18,""name"":""Drama""},{""id"":10751,""name"":""Family""},{""id"":14,""name"":""Fantasy""},{""id"":36,""name"":""History""},{""id"":27,""name"":""Horror""},{""id"":10402,""name"":""Music""},{""id"":9648,""name"":""Mystery""},{""id"":10749,""name"":""Romance""},{""id"":878,""name"":""Science Fiction""},{""id"":10770,""name"":""TV Movie""},{""id"":53,""name"":""Thriller""},{""id"":10752,""name"":""War""},{""id"":37,""name"":""Western""}]}";
+
+            //JArray movie = JArray.Parse(jsonString);
+
+            dynamic data = JObject.Parse(jsonString);
+
+            deneme.Deger = data.genres[1].name;
+
+
+            ///deneme.Deger = 
+
+
+
             if (deneme == null)
             {
                 return NotFound();
