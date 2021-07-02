@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PublicApiExercise.Data;
 using PublicApiExercise.Models;
+using Newtonsoft;
 
 namespace PublicApiExercise.Controllers
 {
@@ -22,6 +23,7 @@ namespace PublicApiExercise.Controllers
         // GET: Denemes
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Deneme.ToListAsync());
         }
 
