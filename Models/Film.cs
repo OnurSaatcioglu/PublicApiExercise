@@ -28,5 +28,7 @@ namespace PublicApiExercise.Models
 
         public float Rating { get; set; }
 
+        public virtual List<MatchMovieGenre> MatchMovieGenres { get; set; }
+
     }
 }

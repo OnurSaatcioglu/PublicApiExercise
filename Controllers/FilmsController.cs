@@ -58,6 +58,13 @@ namespace PublicApiExercise.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                /*List<MatchMovieGenre>  addMatchGenre = new List<MatchMovieGenre>();
+
+                addMatchGenre.MovieId.
+
+                _context.Add(addMatchGenre);*/
+
                 _context.Add(film);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

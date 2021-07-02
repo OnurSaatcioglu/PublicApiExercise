@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PublicApiExercise.Data;
 
 namespace PublicApiExercise.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210702213129_MatchMovieGenre_eklendi")]
+    partial class MatchMovieGenre_eklendi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,33 +297,6 @@ namespace PublicApiExercise.Data.Migrations
                     b.ToTable("Genre");
                 });
 
-            modelBuilder.Entity("PublicApiExercise.Models.MatchMovieGenre", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("FilmId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
-
-                    b.HasIndex("GenreId");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("MatchMovieGenre");
-                });
-
             modelBuilder.Entity("PublicApiExercise.Models.Movie", b =>
                 {
                     b.Property<int>("Id")
@@ -420,34 +395,9 @@ namespace PublicApiExercise.Data.Migrations
                         .HasForeignKey("MovieId");
                 });
 
-            modelBuilder.Entity("PublicApiExercise.Models.MatchMovieGenre", b =>
-                {
-                    b.HasOne("PublicApiExercise.Models.Film", null)
-                        .WithMany("MatchMovieGenres")
-                        .HasForeignKey("FilmId");
-
-                    b.HasOne("PublicApiExercise.Models.Genre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PublicApiExercise.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Genre");
-
-                    b.Navigation("Movie");
-                });
-
             modelBuilder.Entity("PublicApiExercise.Models.Film", b =>
                 {
                     b.Navigation("Genres");
-
-                    b.Navigation("MatchMovieGenres");
                 });
 
             modelBuilder.Entity("PublicApiExercise.Models.Movie", b =>
