@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using PublicApiExercise.Data;
 using PublicApiExercise.Models;
 
@@ -58,6 +60,34 @@ namespace PublicApiExercise.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                string Url = "https://api.themoviedb.org/3/movie/" + muvi.TmdbMuviNo + "?api_key=1e467d81ad561e2cbf2f23427a0095b6";
+
+                string jsonString = new WebClient().DownloadString(Url);
+
+                dynamic data = JObject.Parse(jsonString);
+
+
+
+                //List<MecMuviJanra> addMatchGenre = new List<MecMuviJanra>();
+
+                //addMatchGenre.
+
+                //List<MecMuviJanra> tur = new List<MecMuviJanra>();
+
+
+
+                for(int i=0; i < data.genres.Count; i++)
+                {
+                    MecMuviJanra tur = new MecMuviJanra();
+                    tur.TmdbMuviNo = muvi.TmdbMuviNo;
+                    tur.TmdbJanraNo = data.genres[i].id;
+
+                    _context.Add(tur);
+                }
+
+                
+
                 _context.Add(muvi);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
