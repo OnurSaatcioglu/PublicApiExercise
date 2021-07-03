@@ -17,12 +17,14 @@ namespace PublicApiExercise.Models
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
 
-        public string Descrption { get; set; }
+        #nullable enable
+        public string? Descrption { get; set; }
 
-        public string PosterPath { get; set; }
+        public string? PosterPath { get; set; }
 
-        public string ImdbId { get; set; }
+        public string? ImdbId { get; set; }
 
+        #nullable disable
         public bool IsReleased { get; set; }
 
         public float Rating { get; set; }

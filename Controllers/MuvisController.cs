@@ -62,19 +62,8 @@ namespace PublicApiExercise.Controllers
             {
 
                 string Url = "https://api.themoviedb.org/3/movie/" + muvi.TmdbMuviNo + "?api_key=1e467d81ad561e2cbf2f23427a0095b6";
-
                 string jsonString = new WebClient().DownloadString(Url);
-
                 dynamic data = JObject.Parse(jsonString);
-
-
-
-                //List<MecMuviJanra> addMatchGenre = new List<MecMuviJanra>();
-
-                //addMatchGenre.
-
-                //List<MecMuviJanra> tur = new List<MecMuviJanra>();
-
 
 
                 for(int i=0; i < data.genres.Count; i++)
@@ -86,7 +75,24 @@ namespace PublicApiExercise.Controllers
                     _context.Add(tur);
                 }
 
-                
+                muvi.Title = data.title;
+                muvi.ReleaseDate = Convert.ToDateTime(data.release_date);
+                muvi.Rating = data.vote_average;
+
+                if (data.overview != null)
+                {
+                    muvi.Descrption = data.overview;
+                }
+
+                if (data.posterpath != null)
+                {
+                    muvi.PosterPath = data.posterpath;
+                }
+
+                if (data.imdb_id != null)
+                {
+                    muvi.ImdbId = data.imdb_id;
+                }
 
                 _context.Add(muvi);
                 await _context.SaveChangesAsync();

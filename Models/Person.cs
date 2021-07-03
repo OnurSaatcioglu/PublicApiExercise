@@ -14,7 +14,8 @@ namespace PublicApiExercise.Models
 
         public string Name { get; set; }
 
-        public string PicturePath { get; set; }
+        #nullable enable
+        public string? PicturePath { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? BirthDay { get; set; }
@@ -22,8 +23,9 @@ namespace PublicApiExercise.Models
         [DataType(DataType.Date)]
         public DateTime? DeathDay { get; set; }
 
-        public string PlaceOfBirth { get; set; }
+        public string? PlaceOfBirth { get; set; }
 
+        #nullable disable
         public virtual List<Actor> Actor { get; set; }
 
         public virtual List<Director> Director { get; set; }
