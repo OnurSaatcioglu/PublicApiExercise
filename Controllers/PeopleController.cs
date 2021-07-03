@@ -62,27 +62,56 @@ namespace PublicApiExercise.Controllers
             {
 
                 string DetailsUrl = "https://api.themoviedb.org/3/person/" + person.TmdbPersonNo + "?api_key=1e467d81ad561e2cbf2f23427a0095b6";
-
                 string jsonString = new WebClient().DownloadString(DetailsUrl);
-
                 dynamic data = JObject.Parse(jsonString);
 
+                string CreditsUrl = "https://api.themoviedb.org/3/person/" + person.TmdbPersonNo + "/movie_credits?api_key=1e467d81ad561e2cbf2f23427a0095b6";
+                string jsonString2 = new WebClient().DownloadString(CreditsUrl);
+                dynamic creditsData = JObject.Parse(jsonString2);
 
+                if(creditsData.cast.HasValues == true)
+                {
+                    for (int i = 0; i < creditsData.cast.Count; i++)
+                    {
+                        Actor aktor = new Actor();
+                        aktor.TmdbPersonNo = person.TmdbPersonNo;
+                        aktor.TmdbMuviNo = creditsData.cast[i].id;
+
+                        _context.Add(aktor);
+                    }
+                }
+
+                if (creditsData.crew.HasValues == true)
+                {
+                    for (int i = 0; i < creditsData.crew.Count; i++)
+                    {
+                        if(creditsData.crew[i].job == "Director")
+                        {
+                            Director yonetmen = new Director();
+                            yonetmen.TmdbPersonNo = person.TmdbPersonNo;
+                            yonetmen.TmdbMuviNo = creditsData.crew[i].id;
+
+                            _context.Add(yonetmen);
+                        }
+                    }
+                }
 
                 person.Name = data.name;
+                person.PlaceOfBirth = data.place_of_birth;
 
-                if(data.birthday != null)
+                if (data.birthday != null)
                 {
                     person.BirthDay = Convert.ToDateTime(data.birthday);
-                }
-                
+                }               
                 if(data.deathday != null)
                 {
                     person.DeathDay = Convert.ToDateTime(data.deathday);
                 }
+                if (data.profile_path != null)
+                {
+                    person.PicturePath = Convert.ToDateTime(data.profile_path);
+                }
                 
-                person.PlaceOfBirth = data.place_of_birth;
-
                 _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -65,7 +65,6 @@ namespace PublicApiExercise.Controllers
                 string jsonString = new WebClient().DownloadString(Url);
                 dynamic data = JObject.Parse(jsonString);
 
-
                 for(int i=0; i < data.genres.Count; i++)
                 {
                     MecMuviJanra tur = new MecMuviJanra();
@@ -83,12 +82,10 @@ namespace PublicApiExercise.Controllers
                 {
                     muvi.Descrption = data.overview;
                 }
-
-                if (data.posterpath != null)
+                if (data.poster_path != null)
                 {
-                    muvi.PosterPath = data.posterpath;
+                    muvi.PosterPath = data.poster_path;
                 }
-
                 if (data.imdb_id != null)
                 {
                     muvi.ImdbId = data.imdb_id;
