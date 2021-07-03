@@ -20,5 +20,8 @@ namespace PublicApiExercise.Data
         public DbSet<PublicApiExercise.Models.Janra> Janra { get; set; }
         public DbSet<PublicApiExercise.Models.Muvi> Muvi { get; set; }
         public DbSet<PublicApiExercise.Models.MecMuviJanra> MecMuviJanra { get; set; }
+        public DbSet<PublicApiExercise.Models.Person> Person { get; set; }
+        public DbSet<PublicApiExercise.Models.Actor> Actor { get; set; }
+        public DbSet<PublicApiExercise.Models.Director> Director { get; set; }
     }
 }

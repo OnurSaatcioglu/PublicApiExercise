@@ -17,7 +17,7 @@ namespace PublicApiExercise.Models
 
         public DateTime BirthDay { get; set; }
 
-        public DateTime DeathDay { get; set; }
+        public DateTime? DeathDay { get; set; }
 
         public string PlaceOfBirth { get; set; }
 
