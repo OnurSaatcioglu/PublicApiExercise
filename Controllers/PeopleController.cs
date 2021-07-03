@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using PublicApiExercise.Data;
 using PublicApiExercise.Models;
 
@@ -58,6 +60,18 @@ namespace PublicApiExercise.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                string DetailsUrl = "https://api.themoviedb.org/3/person/" + person.TmdbPersonNo + "?api_key=1e467d81ad561e2cbf2f23427a0095b6";
+
+                string jsonString = new WebClient().DownloadString(DetailsUrl);
+
+                dynamic data = JObject.Parse(jsonString);
+
+
+                person.Name = data.name;
+                person.DeathDay = data.deathday;
+
+
                 _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
