@@ -68,9 +68,20 @@ namespace PublicApiExercise.Controllers
                 dynamic data = JObject.Parse(jsonString);
 
 
-                person.Name = data.name;
-                person.DeathDay = data.deathday;
 
+                person.Name = data.name;
+
+                if(data.birthday != null)
+                {
+                    person.BirthDay = Convert.ToDateTime(data.birthday);
+                }
+                
+                if(data.deathday != null)
+                {
+                    person.DeathDay = Convert.ToDateTime(data.deathday);
+                }
+                
+                person.PlaceOfBirth = data.place_of_birth;
 
                 _context.Add(person);
                 await _context.SaveChangesAsync();

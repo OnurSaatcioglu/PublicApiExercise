@@ -17,7 +17,7 @@ namespace PublicApiExercise.Models
         public string PicturePath { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? DeathDay { get; set; }
