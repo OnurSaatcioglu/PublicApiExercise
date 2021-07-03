@@ -97,7 +97,6 @@ namespace PublicApiExercise.Controllers
                 }
 
                 person.Name = data.name;
-                person.PlaceOfBirth = data.place_of_birth;
 
                 if (data.birthday != null)
                 {
@@ -107,9 +106,13 @@ namespace PublicApiExercise.Controllers
                 {
                     person.DeathDay = Convert.ToDateTime(data.deathday);
                 }
+                if (data.place_of_birth != null)
+                {
+                    person.PlaceOfBirth = data.place_of_birth;
+                }
                 if (data.profile_path != null)
                 {
-                    person.PicturePath = Convert.ToDateTime(data.profile_path);
+                    person.PicturePath = data.profile_path;
                 }
                 
                 _context.Add(person);

@@ -21,15 +21,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.PicturePath)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeathDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlaceOfBirth)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -43,16 +34,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PicturePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeathDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlaceOfBirth)
+                <img src="@Url.Content("https://www.themoviedb.org/t/p/w130_and_h195_bestv2" + item.PicturePath)" alt="Person Image" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
