@@ -19,23 +19,9 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descrption)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PosterPath)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImdbId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsReleased)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -49,22 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descrption)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PosterPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImdbId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsReleased)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
+                <img src="@Url.Content("https://www.themoviedb.org/t/p/w600_and_h900_bestv2" + item.PosterPath)" alt="Sample Film Poster" style="height:195px;width:130px;" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
