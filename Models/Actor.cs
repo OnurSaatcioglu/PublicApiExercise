@@ -11,11 +11,7 @@ namespace PublicApiExercise.Models
 
         public int TmdbMuviNo { get; set; }
 
-        public virtual Movie Movie { get; set; }
-
         public int TmdbPersonNo { get; set; }
-
-        public virtual Person Person { get; set; }
 
     }
 }
