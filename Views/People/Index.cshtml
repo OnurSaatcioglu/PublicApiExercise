@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <img src="@Url.Content("https://www.themoviedb.org/t/p/w130_and_h195_bestv2" + item.PicturePath)" alt="Person Image" />
+                <img src="@Url.Content("https://www.themoviedb.org/t/p/w130_and_h195_bestv2" + item.PicturePath)" alt="@item.Name" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

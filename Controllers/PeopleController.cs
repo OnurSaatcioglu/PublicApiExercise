@@ -197,9 +197,26 @@ namespace PublicApiExercise.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var person = await _context.Person.FindAsync(id);
+
+            int realId = person.TmdbPersonNo;
+            var actorList = _context.Actor.Where(t => t.TmdbPersonNo == realId);
+            
+            if(actorList != null)
+            {
+                foreach (var item in actorList)
+                {
+                    _context.Actor.Remove(item);
+                }
+            }
+
+
             _context.Person.Remove(person);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
+
+
+
         }
 
         private bool PersonExists(int id)

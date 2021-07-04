@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                <img src="@Url.Content("https://www.themoviedb.org/t/p/w600_and_h900_bestv2" + item.PosterPath)" alt="Sample Film Poster" style="height:195px;width:130px;" />
+                <img src="@Url.Content("https://www.themoviedb.org/t/p/w130_and_h195_bestv2" + item.PosterPath)" alt="@item.Title" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
