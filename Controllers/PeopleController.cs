@@ -29,8 +29,6 @@ namespace PublicApiExercise.Controllers
 
             var para = _context.Actor.AsQueryable().Where(t => t.TmdbMuviNo == 95).Select(p => p.TmdbPersonNo);
 
-            //para.
-
             List<Person> ppl = new List<Person>();
 
             foreach(int item in para){
@@ -40,9 +38,6 @@ namespace PublicApiExercise.Controllers
                 ppl.Add(peo);
 
             }
-
-            
-
 
             //AsQueryable().Where(t => t.TmdbPersonNo == para.)
             //var result = await _context.Person.ToListAsync();

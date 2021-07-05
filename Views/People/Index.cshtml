@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PicturePath)
             </th>
+            <th>
+                Film ID
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +38,9 @@
             </td>
             <td>
                 <img src="@Url.Content("https://www.themoviedb.org/t/p/w130_and_h195_bestv2" + item.PicturePath)" alt="@item.Name" />
+            </td>
+            <td>
+                @await Component.InvokeAsync("PersonMovieList", new { person = item.TmdbPersonNo}) 
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
