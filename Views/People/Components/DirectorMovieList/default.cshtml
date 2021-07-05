@@ -1,10 +1,10 @@
-﻿@model IEnumerable<PublicApiExercise.Models.Director>
+﻿@model IEnumerable<PublicApiExercise.Models.Muvi>
 
 @{
     var last = Model.Last();
     foreach (var item in Model)
     {
-        <a href="#">@item.TmdbMuviNo</a>@if (item.Equals(last) == false)
+        <a href="#">@item.Title</a>@if (item.Equals(last) == false)
         {<span>, </span>};
 }
 }
